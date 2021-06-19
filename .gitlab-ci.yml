@@ -15,4 +15,14 @@ services:
 build:
   stage: build
   script: 
-    - docker build -t registry.gitlab.com
+    - docker build -t registry.gitlab.com/desafio-devops .
+
+test:
+  stage: test
+  only:
+    - branches
+  except:
+    - master
+  script:
+    - docker build -t registry.gitlab.com/desafio-devops .
+    - docker run registry.gitlab.com/desafio-devops echo TESTADO
