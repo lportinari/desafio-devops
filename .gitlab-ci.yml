@@ -1,0 +1,18 @@
+image: docker:19.03.12
+
+stages:
+  - build
+  - test
+  - push
+  - deploy
+
+variables:
+  docker_version: "19.03.12"
+
+services:
+  - docker:19.03.12-dind
+
+build:
+  stage: build
+  script: 
+    - docker build -t registry.gitlab.com
