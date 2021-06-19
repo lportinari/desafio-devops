@@ -9,4 +9,6 @@ python3-pip \
 WORKDIR /code
 COPY . /code/
 RUN pip3 install -r requirements.txt
+WORKDIR /app
+CMD ["gunicorn ", "--log-level", "debug", "api:app"]
 
