@@ -3,7 +3,6 @@ image: docker:19.03.12
 stages:
   - build
   - test
-  - push
   - deploy
 
 variables:
@@ -12,13 +11,13 @@ variables:
 services:
   - docker:19.03.12-dind
 
-build:
+build_job:
   stage: build
   script: 
     - docker build -t registry.gitlab.com/desafio-devops .
 
-test:
+test_job:
   stage: test
   script:
-    #- docker build -t registry.gitlab.com/desafio-devops .
+    - docker build -t registry.gitlab.com/desafio-devops .
     - docker run registry.gitlab.com/desafio-devops echo TESTADO
