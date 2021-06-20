@@ -36,5 +36,6 @@ test_prod:
   script:
      - apt-get update -y && apt-get install sshpass -y
      - sshpass -p Acqwp2012 ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 'pip install -r /var/www/html/desafio-devops/requirements.txt'
+     - sshpass -p Acqwp2012 ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 'chmod +x /var/www/html/desafio-devops/app/test/test.sh && chmod 777 /var/www/html/desafio-devops/app/test/test.sh'
      - sshpass -p Acqwp2012 ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 'cd /var/www/html/desafio-devops/app && gunicorn --log-level debug api:app --daemon'
      - sshpass -p Acqwp2012 ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 /var/www/html/desafio-devops/app/test/test.sh
