@@ -6,8 +6,10 @@ stages:
 build_job:
   stage: build
   image: lportinari/devops-test:1.0.0
+  before_script:
+    - cd app/
   script: 
-    - docker build -t registry.gitlab.com/desafio-devops .
+    - gunicorn --log-level debug api:app --daemon
 
 test_job:
   stage: test
