@@ -10,6 +10,7 @@ build_job:
   stage: build
   # image: lportinari/devops-test:1.0.0
   before_script:
+    - apt-get update -y && apt-get install gunicorn -y
     - cd app/
     - gunicorn --log-level debug api:app --daemon
     - cd test/
