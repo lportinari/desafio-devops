@@ -7,6 +7,8 @@ variables:
   DEPLOY_PATH: var/www/desafio-devops
 
 build_job:
+  only:
+    - homolog
   stage: build
   image: lportinari/devops-test:1.0.0
   before_script:
@@ -21,8 +23,11 @@ build_job:
 
 test_job:
   stage: test
+  needs: ["build_job"]
   image: lportinari/devops-test:1.0.0
   script:
+     - apt-get update -y && apt-get install sshpass -y
+     - sshpass -p Acqwp2012 ssh -o StrictHostKeyChecking=no -p32722 whoami
      - pwd
   dependencies:
      - build_job
