@@ -4,7 +4,7 @@ stages:
   - test_prod
 
 variables:
-  DEPLOY_PATH: /var/www/html/desafio-devops/
+  DEPLOY_PATH: /var/www/html/desafio-devops
 
 build_job:
   stage: build
