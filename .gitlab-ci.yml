@@ -16,7 +16,7 @@ build_job:
     - cd test/
     
   script: 
-    - sh test.sh
+    - ./test.sh
 
 test_job:
   stage: test
