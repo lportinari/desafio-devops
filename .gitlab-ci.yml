@@ -16,9 +16,17 @@ build_job:
     - sleep 5
     - cd test/
     - chmod +x test.sh && chmod 777 test.sh
-    
+   
   script: 
-    - ./test.sh
+    - ./test.sh > output.txt
+    - grep -i SUCCESS output.txt
+    - >
+      if [ "$?" == "SUCCESS" ]; then
+        
+      else
+        exit 0
+      fi
+  
 
 test_job:
   stage: test
