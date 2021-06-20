@@ -18,10 +18,7 @@ build_job:
     - chmod +x test.sh && chmod 777 test.sh
    
   script: 
-    - ./test.sh > output.txt
-    - grep -i SUCCESS output.txt
-    - if [ "$?" == "FAIL" ]; then echo "Sucesso"; else exit 0; fi
-  
+    - ./test.sh
 
 deploy_api:
   stage: deploy
