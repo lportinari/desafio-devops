@@ -14,6 +14,7 @@ build_job:
     - cd app/
     - gunicorn --log-level debug api:app --daemon
     - cd test/
+    - chmod +x test.sh && chmod 777 test.sh
     
   script: 
     - ./test.sh
