@@ -7,8 +7,6 @@ variables:
   DEPLOY_PATH: var/www/desafio-devops
 
 build_job:
-  only:
-    - homolog
   stage: build
   image: lportinari/devops-test:1.0.0
   before_script:
