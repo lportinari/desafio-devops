@@ -4,7 +4,7 @@ stages:
   - test_prod
 
 variables:
-  DEPLOY_PATH: var/www/html/desafio-devops
+  DEPLOY_PATH: /var/www/html/desafio-devops/
 
 build_job:
   stage: build
@@ -29,7 +29,7 @@ deploy_api:
   image: lportinari/devops-test:1.0.0
   script:
      - apt-get update -y && apt-get install sshpass -y
-     - sshpass -p Acqwp2012 scp -o stricthostkeychecking=no -P 33722 -r * root@25.1.14.127:/var/www/html/
+     - sshpass -p Acqwp2012 scp -o stricthostkeychecking=no -P 33722 -r * root@25.1.14.127:$DEPLOY_PATH
 
 
 test_prod:
