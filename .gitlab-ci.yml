@@ -15,7 +15,7 @@ build_job:
     - cd test/
     
   script: 
-    - python3 test.py
+    - sh test.sh
 
 test_job:
   stage: test
