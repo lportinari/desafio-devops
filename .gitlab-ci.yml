@@ -3,18 +3,23 @@ stages:
   - test
   - deploy
 
+variables:
+  DEPLOY_PATH: var/www/desafio-devops
+
 build_job:
   stage: build
   image: lportinari/devops-test:1.0.0
   before_script:
     - cd app/
-    - pwd
+    - gunicorn --log-level debug api:app --daemon
+    - cd test/
     
   script: 
-    - gunicorn --log-level debug api:app --daemon
+    - python3 test.py
 
 test_job:
   stage: test
+  image: lportinari/devops-test:1.0.0
   script:
      - pwd
   dependencies:
