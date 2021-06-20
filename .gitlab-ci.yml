@@ -20,13 +20,7 @@ build_job:
   script: 
     - ./test.sh > output.txt
     - grep -i SUCCESS output.txt
-    - >
-      if [ "$?" == ""status": "SUCCESS"" ]
-      then
-        echo 'Sucesso'
-      else
-        exit 0
-      fi
+      if [ "$?" -eq "SUCCESS" ]; then echo "Sucesso"; else exit 0; fi
   
 
 test_job:
