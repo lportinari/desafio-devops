@@ -19,5 +19,4 @@ build_job:
 test_job:
   stage: test
   script:
-    - docker build -t registry.gitlab.com/desafio-devops .
-    - docker run registry.gitlab.com/desafio-devops echo TESTADO
+     - docker run registry.gitlab.com/desafio-devops echo TESTADO
