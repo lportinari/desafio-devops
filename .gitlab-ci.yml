@@ -13,6 +13,7 @@ build_job:
     - apt-get update -y && apt-get install gunicorn -y && apt-get install curl -y
     - cd app/
     - gunicorn --log-level debug api:app --daemon
+    - sleep 5
     - cd test/
     - chmod +x test.sh && chmod 777 test.sh
     
