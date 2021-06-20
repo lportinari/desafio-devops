@@ -8,6 +8,8 @@ build_job:
   image: lportinari/devops-test:1.0.0
   before_script:
     - cd app/
+    - pwd
+    
   script: 
     - gunicorn --log-level debug api:app --daemon
 
@@ -15,3 +17,6 @@ test_job:
   stage: test
   script:
      - pwd
+  dependencies:
+     - build_job
+
