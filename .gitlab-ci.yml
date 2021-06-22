@@ -10,7 +10,6 @@ build_job:
   stage: build
   image: lportinari/devops-test:1.0.0
   before_script:
-    - apt-get update -y && apt-get install gunicorn -y && apt-get install curl -y
     - cd app/
     - gunicorn --log-level debug api:app --daemon
     - sleep 5
@@ -25,7 +24,6 @@ deploy_api:
   needs: ["build_job"]
   image: lportinari/devops-test:1.0.0
   script:
-     #- apt-get update -y && apt-get install sshpass -y
      - sshpass -p $SERVER_PASS scp -o stricthostkeychecking=no -P 33722 -r * root@25.1.14.127:$DEPLOY_PATH
 
 
@@ -34,7 +32,6 @@ test_prod:
   needs: ["deploy_api"]
   image: lportinari/devops-test:1.0.0
   script:
-     #- apt-get update -y && apt-get install sshpass -y
      - sshpass -p $SERVER_PASS ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 'pip install -r /var/www/html/desafio-devops/requirements.txt'
      - sshpass -p $SERVER_PASS ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 'chmod +x /var/www/html/desafio-devops/app/test/test.sh && chmod 777 /var/www/html/desafio-devops/app/test/test.sh'
      - sshpass -p $SERVER_PASS ssh -o stricthostkeychecking=no -p 33722 root@25.1.14.127 'cd /var/www/html/desafio-devops/app && gunicorn --log-level debug api:app --daemon'
